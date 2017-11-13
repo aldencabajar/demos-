@@ -95,9 +95,9 @@ TP.abs <- data.stability[,c("TP.abs_t1", "TP.abs_t2")]
 date <-sapply(factor(data.stability$stdcrv.used), toString)
 sample.conc <- sample.wt/solvent.wt
 tpc.stability <- data.frame(
-						code= data.stability$code, week=data.stability$week, 
-						apply(TP.abs, 2, function(x) mapply(function(x,y) predict.lm(cft[["TPC",y]], 														data.frame(aveabs=x)), x ,date))/sample.conc*1000
-						)
+				code= data.stability$code, week=data.stability$week, 
+				apply(TP.abs, 2, function(x) mapply(function(x,y) predict.lm(cft[["TPC",y]], 														data.frame(aveabs=x)), x ,date))/sample.conc*1000
+			    )
 colnames(tpc.stability)[3:4] <- c("TPC_t1","TPC_t2")
 stability.profile <- by(tpc.stability, list(tpc.stability$code), data.frame)
 
